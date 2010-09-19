@@ -13,21 +13,21 @@ require('http').createServer(
       this.headers['Server'] = 'node';
       console.log(this.params.method + ' ' + this.params.path);
       chain();
-    });
+    })
     
     .plugin('POST *', function () {
       this.status = 405;
       throw new Error('method not allowed');
-    });
+    })
     
     .plugin('{method} /private/*', function () {
       this.status = 401;
       throw new Error('access denied');
-    });
+    })
     
     .handler('GET /', function () {
       this.send("<h1>Demonstraing Meryl</h1>");
-    });
+    })
     
     .handler('GET /{pagename}\.html', function () {
       this.send("<h1>You're reading: " + this.params.pagename + "</h1>");
