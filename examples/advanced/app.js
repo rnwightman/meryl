@@ -9,6 +9,10 @@ var meryl = require('./../../index');
 require('http').createServer(
   meryl
   
+    .extend('htmlH1', function(text) {
+      return "<h1>" + text + "</h1>";
+    })
+    
     .plugin('{method} <path>', function (chain) {
       this.headers['Server'] = 'node';
       console.log(this.params.method + ' ' + this.params.path);
@@ -30,7 +34,9 @@ require('http').createServer(
     })
     
     .handler('GET /{pagename}\.html', function () {
-      this.send("<h1>You're reading: " + this.params.pagename + "</h1>");
+      this.send(
+        this.htmlH1("You're reading: " + this.params.pagename)
+      );
     })
     
     .handler('GET /exception', function () {
