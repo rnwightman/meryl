@@ -1,7 +1,7 @@
 var Connect = require('connect');
 var meryl = require('meryl');
 
-meryl.p('GET /', function() {
+meryl.h('GET /', function() {
   this.send('Connected :)');
 });
 
