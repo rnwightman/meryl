@@ -1,7 +1,6 @@
 /*
  * This example also uses 'meryl-extras' module
- * which contains useful add-on contributions
- * to make Meryl ready for production requirements
+ * which contains useful add-ons
  */
 
 var meryl = require('../../index'),
@@ -28,10 +27,10 @@ meryl.x('decodeSimplePostData', function(postdata) {
   return qs.parse(postdata);
 });
 
-// Register our ready to static file plugin to work under 'static' virtual path
+// Register our ready to use static file plugin
 meryl.p('GET /static/<filepath>', staticfile());
 
-// Also register out handlers
+// Also register our handlers
 meryl.h('GET /', function() {
   this.render('index', {twinkles: twinkles});
 });
