@@ -1,6 +1,6 @@
 { "readme": "http://github.com/coffeemate/meryl#readme"
-, "version": "0.2.0"
-, "description": "Minimalistic web framework for NodeJS"
+, "version": "0.3.0"
+, "description": "Minimalist web framework for NodeJS"
 , "main": "index"
 , "author": "Kadir Pekel <kadirpekel@gmail.com>"
 , "name": "meryl"
