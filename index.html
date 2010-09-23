@@ -52,6 +52,10 @@
             </a>
           </li>
           <li>
+            <a href="#extras">Extras
+            </a>
+          </li>
+          <li>
             <a href="#source">Source
             </a>
           </li>
@@ -225,7 +229,7 @@ require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
         </p>
 
         <h4>
-          <a name="meryl.h">meryl.h(expr, callback)
+          <a name="meryl.h">meryl.h[andler](expr, callback)
           </a>
         </h4>
         <p>Registers a new http handler to global Meryl instance. First argument
@@ -281,7 +285,7 @@ require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
   this.send(fileContents);
 });</code></pre>
         <h4>
-          <a name="meryl.p">meryl.p(expr, callback)
+          <a name="meryl.p">meryl.p[lugin](expr, callback)
           </a>
         </h4>
         <p>This function registers a plugin to the global meryl instance. More than one plugin
@@ -327,7 +331,7 @@ meryl.h('GET /(index.html)?', function () {
 
 require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
         <h4>
-          <a name="meryl.x">meryl.x(key, value)
+          <a name="meryl.x">meryl.[e]x[tend](key, value)
           </a>
         </h4>
         <p>You can easily extend Meryl context object. This function simply takes 'key' and 'value'
@@ -345,12 +349,12 @@ meryl.h('GET /', function() {
 });
         </code></pre>
         <h4>
-          <a name="meryl.notfndhnd">meryl.notFndHnd(cb)
+          <a name="meryl.notfndhnd">meryl.notFoundHandler(cb)
           </a>
         </h4>
         <p>Custom 404 file not found handler</p>
         <h4>
-          <a name="meryl.errhnd">meryl.errHnd(cb)
+          <a name="meryl.errhnd">meryl.errorHandler(cb)
           </a>
         </h4>
         <p>Custom 500 server error handler</p>
@@ -364,6 +368,33 @@ meryl.h('GET /', function() {
           an object for further using in Meryl context such 'this.options'.
         </p>
         <pre><code>require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
+      </div>
+      <div class="section">
+        <h3>
+          <a name="extras">Extras
+          </a>
+        </h3>
+        <hr/>
+        <p>There is an extension project named
+        <a href="http://github.com/coffeemate/meryl-extras"
+          title="meryl-extras">Meryl Extras</a> which provides extra
+           plugins and extensions to decorate Meryl as you wish.
+        </p>
+        <p>To use, go install first via npm
+        </p>
+        <pre>> npm install meryl-extras</pre>
+        <p>Below, there is an example demonstrates how to build an ad-hoc file
+            server using static file plugin</p>
+        <pre>
+var meryl = require('meryl'),
+  merylex = require('meryl-extras');
+
+var staticfile = merylex('staticfile');
+
+require('http').createServer(
+  meryl.p('GET /<filepath>', staticfile()).cgi()
+).listen(3000);
+        </pre>
       </div>
       <div class="section">
         <h3>
