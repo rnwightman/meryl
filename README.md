@@ -19,4 +19,9 @@ Please visit Meryl homepage for all related stuff.
 
 <http://coffeemate.github.com/meryl>
 
+Also don't forget to check out Meryl Extras project which provides extra plugins
+and extensions to decorate Meryl as you wish.
+
+<http://github.com/coffeemate/meryl-extras>
+
 For updates please follow: <http://twitter.com/kadirpekel>
