@@ -86,7 +86,7 @@
               </li>
               <li>Extension mechanism which allows user to extend handler and plugin contexts.
               </li>
-              <li>Built-in static file handler plugin and micro templating extension.
+              <li>Useful add-ons via <a href="#extras">Meryl Extras</a> project
               </li>
             </ul>
           <p>
@@ -385,16 +385,14 @@ meryl.h('GET /', function() {
         <pre>> npm install meryl-extras</pre>
         <p>Below, there is an example demonstrates how to build an ad-hoc file
             server using static file plugin</p>
-        <pre>
-var meryl = require('meryl'),
+        <pre><code>var meryl = require('meryl'),
   merylex = require('meryl-extras');
 
 var staticfile = merylex('staticfile');
 
 require('http').createServer(
   meryl.p('GET /<filepath>', staticfile()).cgi()
-).listen(3000);
-        </pre>
+).listen(3000);</code></pre>
       </div>
       <div class="section">
         <h3>
