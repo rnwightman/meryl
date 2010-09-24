@@ -5,7 +5,6 @@
     <title>Meryl - Minimalistic Web Framework for NodeJS
     </title>
     <script type="text/javascript">
-
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-2040979-8']);
       _gaq.push(['_trackPageview']);
@@ -15,8 +14,8 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
     </script>
+		<link rel="stylesheet" href="/css/styles.css" type="text/css" />
   </head>
   <body>
     <div id="wrap">
@@ -108,15 +107,15 @@
             <a href="http://github.com/isaacs/npm" title="npm">npm
             </a> for painless, quicky experience.
           </p>
-          <pre>$ npm install meryl</pre>
+          <pre class="js">$ npm install meryl</pre>
           <p>If you don't have npm, you can simply put meryl in your
             '$HOME/.node_libraries' directory.
           </p>
-          <pre>$ cd $HOME/.node_libraries
+          <pre class="js">$ cd $HOME/.node_libraries
 $ git clone http://github.com/coffeemate/meryl.git</pre>
           <p>Yep, it's ready already. Now you can use it in your applications by typing:
           </p>
-          <pre><code>var meryl = require('meryl');</code></pre>
+          <pre class="js">var meryl = require('meryl');</pre>
         </div>
         <div class="section">
           <h3>
@@ -128,7 +127,7 @@ $ git clone http://github.com/coffeemate/meryl.git</pre>
             If you installed Meryl sucessfully, now you are ready to get your feet wet.
             Create a file named 'app.js' with the copy of contents below.
           </p>
-          <pre><code>// app.js
+          <pre class="js">// app.js
             
 // import meryl
 var meryl = require('meryl');
@@ -139,10 +138,10 @@ meryl.h('GET /{yourname}?', function () {
 });
 
 // OK, here we go. Let's plug meryl into your http server instance.
-require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
+require('http').createServer(meryl.cgi()).listen(3000);</pre>
           <p>Ok, let's run it.
           </p>
-          <pre>$ node app.js</pre>
+          <pre class="js">$ node app.js</pre>
           <p>If you got no exception, you are the lucky one.
             Now, go hit your http client with the url 'http://localhost:3000',
             also try 'http://localhost:3000/meryl'
@@ -173,52 +172,52 @@ require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
           <p>Flushes context status and headers to the client side
             with the given contents of buffer parameter.
           </p>
-          <pre><code>meryl.h('GET /', function() {
+          <pre class="js">meryl.h('GET /', function() {
   this.send('Hello Meryl');
-});</code></pre>
+});</pre>
           <h5>this.params
           </h5>
           <p>Object containing query string and path parameters with url info</p>
-          <pre><code>meryl.h('GET /list/{item}', function() {
+          <pre class="js">meryl.h('GET /list/{item}', function() {
   // try: GET /list/comments?pagesize=10
   this.send('Listing ' + this.params.pagesize + ' '
             + this.params.item);
-});</code></pre>
+});</pre>
           <h5>this.postdata
           </h5>
           <p>Buffer object received from the clients. It's a raw data
             which must be processed to refine if required</p>
-          <pre><code>meryl.h('POST /preview', function() {
+          <pre class="js">meryl.h('POST /preview', function() {
   // echo post data as text
   this.headers['Content-Type'] = 'text/plain';
   this.send(this.postdata);
-});</code></pre>
+});</pre>
           <h5>this.headers
           </h5>
           <p>Object containing response headers.</p>
-          <pre><code>meryl.h('GET /foo.pdf', function() {
+          <pre class="js">meryl.h('GET /foo.pdf', function() {
   this.headers['Content-Type'] = 'application/pdf';
   // omitted for brevity
   this.send(pdfData);
-});</code></pre>
+});</pre>
           <h5>this.status
           </h5>
           <p>Http status code of client response.</p>
-          <pre><code>meryl.h('GET /blank', function() {
+          <pre class="js">meryl.h('GET /blank', function() {
   this.status = 204; // No Content
   this.send();
-});</code></pre>
+});</pre>
           <h5>this.options
           </h5>
           <p>Options object which is passed to the <a href="#meryl.cgi">meryl.cgi</a> function.</p>
-          <pre><code>meryl.h('GET /', function() {
+          <pre class="js">meryl.h('GET /', function() {
   if(this.options.debug)
     console.log('some log');
   
   // omitted for brevity
 });
           
-require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
+require('http').createServer(meryl.cgi({debug:true})).listen(3000);</pre>
           <h5>this.request
           </h5>
           <p>Pure request object belongs to built in http module attached to the context.</p>
@@ -242,7 +241,7 @@ require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
         <p>
           Routing pattern is very simple in mind:
         </p>
-        <pre>$HTTP_VERB $PATH_EXPRESSION</pre>
+        <pre class="js">$HTTP_VERB $PATH_EXPRESSION</pre>
         <p>The whole expression builds a meryl flavored reqular expression which exposes 
           two types of path parameters.</p>
           <ul>
@@ -280,10 +279,10 @@ require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
           </li>
           </ul>
           <p>Let's take look at a concrete example like below</p>
-          <pre><code>meryl.h('GET /repo/< filepath>/{version}', function() {
+          <pre class="js">meryl.h('GET /repo/< filepath>/{version}', function() {
   var fileContents = readRepo(this.params.filepath, this.params.version);
   this.send(fileContents);
-});</code></pre>
+});</pre>
         <h4>
           <a name="meryl.p">meryl.p[lugin](expr, callback)
           </a>
@@ -300,7 +299,7 @@ require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
           all the request/response pipe will hang which makes no sense for client side.
         </p>
         <p>Here is a sample application demonstrating plugins.</p>
-        <pre><code>// app.js
+        <pre class="js">// app.js
 
 var meryl = require('meryl');
 
@@ -329,7 +328,7 @@ meryl.h('GET /(index.html)?', function () {
   this.send('Demonstrating plugins');
 });
 
-require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
+require('http').createServer(meryl.cgi()).listen(3000);</pre>
         <h4>
           <a name="meryl.x">meryl.[e]x[tend](key, value)
           </a>
@@ -338,7 +337,7 @@ require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
           parameters to extend context object used in handlers and plugins. And also itself runs in
           Meryl context so you can refer it by using 'this' keyword.</p>
         <p>Have a look at the example below.</p>
-        <pre><code>meryl.x('redirect', function(location) {
+        <pre class="js">meryl.x('redirect', function(location) {
   this.status = 301;
   this.headers['Location'] = location;
   this.send();
@@ -347,7 +346,7 @@ require('http').createServer(meryl.cgi()).listen(3000);</code></pre>
 meryl.h('GET /', function() {
   this.redirect('index.html');
 });
-        </code></pre>
+        </pre>
         <h4>
           <a name="meryl.notfndhnd">meryl.notFoundHandler(cb)
           </a>
@@ -367,7 +366,7 @@ meryl.h('GET /', function() {
           You can pass
           an object for further using in Meryl context such 'this.options'.
         </p>
-        <pre><code>require('http').createServer(meryl.cgi({debug:true})).listen(3000);</code></pre>
+        <pre class="js">require('http').createServer(meryl.cgi({debug:true})).listen(3000);</pre>
       </div>
       <div class="section">
         <h3>
@@ -382,17 +381,17 @@ meryl.h('GET /', function() {
         </p>
         <p>To use, go install first via npm
         </p>
-        <pre>> npm install meryl-extras</pre>
+        <pre class="js">> npm install meryl-extras</pre>
         <p>Below, there is an example demonstrates how to build an ad-hoc file
             server using static file plugin</p>
-        <pre><code>var meryl = require('meryl'),
+        <pre class="js">var meryl = require('meryl'),
   merylex = require('meryl-extras');
 
 var staticfile = merylex('staticfile');
 
 require('http').createServer(
   meryl.p('GET /< filepath>', staticfile()).cgi()
-).listen(3000);</code></pre>
+).listen(3000);</pre>
       </div>
       <div class="section">
         <h3>
@@ -405,7 +404,7 @@ require('http').createServer(
         </p>
         <p>To obtain a copy, simply type:
         </p>
-        <pre>git clone http://github/com/coffeemate/meryl.git</pre>
+        <pre class="js">git clone http://github/com/coffeemate/meryl.git</pre>
       </div>
       <div class="section">
         <h3>
@@ -415,8 +414,8 @@ require('http').createServer(
         <hr/>
         <p>
           <ul>
-            <li><a href="http://blog.kadirpekel.com">Kadir Pekel</a> (Author) <a href="http://www.twitter.com/kadirpekel"><img src="http://twitter-badges.s3.amazonaws.com/t_mini-b.png" alt="Follow kadirpekel on Twitter"/></a></li>
-            <li><a href="http://stagas.com">George Stagas</a> <a href="http://www.twitter.com/stagas"><img src="http://twitter-badges.s3.amazonaws.com/t_mini-b.png" alt="Follow stagas on Twitter"/></a></li>
+            <li><a href="http://blog.kadirpekel.com">Kadir Pekel</a> (Author) <a href="http://www.twitter.com/kadirpekel"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow kadirpekel on Twitter"/></a></li>
+            <li><a href="http://stagas.com">George Stagas</a> <a href="http://www.twitter.com/stagas"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow stagas on Twitter"/></a></li>
           </ul>
         </p>
         <p>Please contribute to project to see your name at this modest place :)</p>
@@ -449,6 +448,7 @@ require('http').createServer(
       <img src="images/nodejs.png" alt="nodejs powered">
     </a>
   </div>
-<script src="js/hijs.js" type="text/javascript"></script>
+	<script type="text/javascript">window.hijs = '.js';</script>
+	<script src="js/hijs.js" type="text/javascript"></script>
 </body>
 </html>

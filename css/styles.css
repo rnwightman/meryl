@@ -110,8 +110,8 @@ img {
 }
 
 /* hijs styles */
-code .keyword               { font-weight: bold; color: #C2A770; }
-code .string, code .regexp  { color: #B5C587 }
-code .class, code .special  { color: #669199 }
-code .number                { color: #A33D29 }
-code .comment               { color: #555555 }
+.js .keyword               { font-weight: bold; color: #C2A770; }
+.js .string, code .regexp  { color: #B5C587 }
+.js .class, code .special  { color: #669199 }
+.js .number                { color: #A33D29 }
+.js .comment               { color: #555555 }
