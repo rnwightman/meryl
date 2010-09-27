@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var assert = require('assert'),
+  fs = require('fs');
+
+function runTests () {
+  fs.readdir('.', function(err, filenames) {
+    for (var i in filenames) {
+      var filename = filenames[i];
+      console.log(filename);
+      var groups = null
+      if((groups = filename.match(/^(test-\w+)\.js$/))) {
+        var testSuite = require("./" + groups[1]);
+        for (var testName in testSuite) {
+          var test = testSuite[testName];
+          if (typeof test === 'function') {
+            try {
+              test.call(assert);
+              console.log('OK: ' + testName);
+            } catch (e) {
+              console.log('NOK: ' + testName);
+              console.log(e.stack);
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+runTests();
