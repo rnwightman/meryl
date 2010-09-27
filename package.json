@@ -5,4 +5,9 @@
 , "author": "Kadir Pekel <kadirpekel@gmail.com>"
 , "name": "meryl"
 , "engines": { "node": ">=0.1.101" }
+, "repository" :
+  {
+    "type": "git"
+  , "url": "http://github.com/coffeemate/meryl"
+  }
 }
