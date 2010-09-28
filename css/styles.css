@@ -109,6 +109,10 @@ img {
   text-align: center;
 }
 
+#goodies {
+  float: right;
+}
+
 /* hijs styles */
 .js .keyword               { font-weight: bold; color: #C2A770; }
 .js .string, code .regexp  { color: #B5C587 }
