@@ -24,4 +24,11 @@ and extensions to decorate Meryl as you wish.
 
 <http://github.com/coffeemate/meryl-extras>
 
-For updates please follow: <http://twitter.com/kadirpekel>
+For updates please follow: <http://twitter.com/meryljs>
+
+Contributors:
+
+ * Kadir Pekel (Author) <http://twitter.com/kadirpekel>
+ * George Stagas <http://twitter.com/stagas>
+ * Samuel Morello <http://twitter.com/ouvanous>
+
