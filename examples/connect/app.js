@@ -1,8 +1,8 @@
 var Connect = require('connect');
 var meryl = require('meryl');
 
-meryl.h('GET /', function() {
-  this.send('Connected :)');
+meryl.h('GET /', function(req, resp) {
+  resp.send('Connected :)');
 });
 
 var server = Connect.createServer(
