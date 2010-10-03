@@ -6,44 +6,47 @@ var meryl = require('./../../index');
  * and their verbose names instead of single letter ones.
  */
 
+meryl.debug = 1;
+
 require('http').createServer(
   meryl
   
-    .extend('htmlH1', function(text) {
-      return "<h1>" + text + "</h1>";
+    .plug(function(req, resp, next) {
+      resp.filteredSend = function (buffer) {
+        resp.send("<h1>" + buffer.toString() + "</h1>")
+      };
+      next();
     })
     
-    .plugin('{method} <path>', function (chain) {
-      this.headers['Server'] = 'node';
-      console.log(this.params.method + ' ' + this.params.path);
-      chain();
+    .plug(function (req, resp, next) {
+      resp.headers['Server'] = 'node';
+      console.log(req.method + ' ' + req.params.pathname);
+      next();
     })
     
-    .plugin('POST *', function () {
-      this.status = 405;
+    .plug('POST *', function (req, resp, next) {
+      resp.status = 405;
       throw new Error('method not allowed');
     })
     
-    .plugin('{method} /private/*', function () {
-      this.status = 401;
+    .plug('{method} /private/*', function (req, resp, next) {
+      resp.status = 401;
       throw new Error('access denied');
     })
     
-    .handler('GET /', function () {
-      this.send("<h1>Demonstraing Meryl</h1>");
+    .handle('GET /', function (req, resp) {
+      resp.send("<h1>Demonstraing Meryl</h1>");
     })
     
-    .handler('GET /{pagename}\.html', function () {
-      this.send(
-        this.htmlH1("You're reading: " + this.params.pagename)
-      );
+    .handle('GET /{pagename}.html', function (req, resp) {
+      resp.filteredSend("You're reading: " + req.params.pagename);
     })
     
-    .handler('GET /exception', function () {
-      this.send(1);
+    .handle('GET /exception', function (req, resp) {
+      resp.send(1);
     })
     
-    .cgi({prod: false})
+    .cgi()
     
 ).listen(3000);
 
