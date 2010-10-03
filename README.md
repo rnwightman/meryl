@@ -8,7 +8,7 @@ It is really simple to use, fun to play and easy to modify.
 	var meryl = require('meryl');
 	
 	// Now define a request handler tied to an url expression.
-	meryl.h('GET /', function () { this.send('<h3>Hello, World!</h3>'); });
+	meryl.h('GET /', function (req, resp) { req.send('<h3>Hello, World!</h3>'); });
 	
 	// OK, here we go. Let's plug meryl into your http server instance.
 	require('http').createServer(meryl.cgi()).listen(3000);
@@ -24,4 +24,11 @@ and extensions to decorate Meryl as you wish.
 
 <http://github.com/coffeemate/meryl-extras>
 
-For updates please follow: <http://twitter.com/kadirpekel>
+For updates please follow: <http://twitter.com/meryljs>
+
+Contributors:
+
+ * Kadir Pekel (Author) <http://twitter.com/kadirpekel>
+ * George Stagas <http://twitter.com/stagas>
+ * Samuel Morello <http://twitter.com/ouvanous>
+
