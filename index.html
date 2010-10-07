@@ -413,6 +413,10 @@ require('http').createServer(
         you can simply pass only your callback to the <a href="#meryl.p">meryl.p
         </a> function.
         </li>
+        <li>
+        You can mark path expression variables as optional using a trailing
+        question mark.
+        </li>
         </ul>
         Below the example demonstrates all the tips above.
         </p>
@@ -425,8 +429,9 @@ require('http').createServer(
     .handle('GET /',
       function(req, resp) { resp.send('homepage') })
     
-    .handle('GET /greet/{who}.html',
-      function(req, resp) { resp.send('Hello, ' + req.params.who); } )
+    .handle('GET /greet/({who}.html)?',
+      function(req, resp) { resp.send('Hello, '
+      											+ req.params.who || 'World'); } )
     
     .cgi()
 ).listen(3000);</pre>
@@ -456,6 +461,7 @@ require('http').createServer(
             <li><a href="http://blog.kadirpekel.com">Kadir Pekel</a> (Author) <a href="http://www.twitter.com/kadirpekel"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow kadirpekel on Twitter"/></a></li>
             <li><a href="http://stagas.com">George Stagas</a> <a href="http://www.twitter.com/stagas"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow stagas on Twitter"/></a></li>
             <li><a href="http://www.ouvanous.com">Samuel Morello</a> <a href="http://www.twitter.com/ouvanous"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow ouvanous on Twitter"/></a></li>
+            <li><a href="javascript:void(0)">Tom R</a> <a href="http://www.twitter.com/rx"><img src="http://twitter-badges.s3.amazonaws.com/t_small-a.png" alt="Follow rx on Twitter"/></a></li>
           </ul>
         </p>
         <p>Please contribute to project to see your name at this modest place :)</p>
@@ -476,7 +482,6 @@ require('http').createServer(
     <div id="footer">
       <small>All the content and micro-site design belongs to the project author except:
       <ul>
-        <li>Meryl Streep cartoon portrait <a href="http://www.toonpool.com/artists/Gero_1667">Gero</a>.</li>
         <li>Javascript highlighting <a href="http://github.com/cloudhead/hijs">hijs</a>.</li>
         <li>'Fork me on GitHub' image <a href="http://x451.com/">x451</a>.</li>
       </ul>
