@@ -417,14 +417,22 @@ require('http').createServer(
         You can mark path expression variables as optional using a trailing
         question mark.
         </li>
+        <li>
+        Meryl is <a href="http://github.com/senchalabs/connect" title="Connect framework">Connect</a> framework compatible. You can plug any Connect middleware module to Meryl.
+        </li>
         </ul>
         Below the example demonstrates all the tips above.
         </p>
         <pre class="js">require('http').createServer(
   require('meryl')
   
+    .plug(require('connect').staticProvider())
+    
     .plug(
       function(req, resp, next) { log(req.params.pathname); next() })
+    
+    .plug('POST *', 
+      function(req, resp, next) { throw 'restricted'; })
     
     .handle('GET /',
       function(req, resp) { resp.send('homepage') })
