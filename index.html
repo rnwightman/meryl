@@ -431,7 +431,7 @@ require('http').createServer(
     
     .handle('GET /greet/({who}.html)?',
       function(req, resp) { resp.send('Hello, '
-      											+ req.params.who || 'World'); } )
+              + req.params.who || 'World'); } )
     
     .cgi()
 ).listen(3000);</pre>
