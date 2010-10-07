@@ -4,7 +4,6 @@ var hostname = process.env.HOSTNAME || 'localhost';
 var port = process.env.PORT || 3000;
 
 exports.fetch = function (method, path, headers, respReady) {
-  var body = '';
   var client = http.createClient(3000, 'localhost');
   var request = client.request(method, path, headers);
   request.end();
