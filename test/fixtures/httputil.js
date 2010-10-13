@@ -25,13 +25,12 @@ module.exports = function (cgi, envReady) {
         } catch (e) { }
         respReady(response);
       });
-    }
-  );
-};
+    });
+  };
 
-process.nextTick(function () {
-	if (envReady && typeof envReady == 'function')
-		envReady(server, client);
+  process.nextTick(function () {
+	  if (envReady && typeof envReady == 'function')
+	  	envReady(server, client);
   });
 };
 
