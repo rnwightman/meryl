@@ -1,13 +1,24 @@
 var Connect = require('connect'),
   meryl = require('../../index');
 
-meryl.plug(Connect.staticProvider());
+meryl
+  .p(
+    function(req, resp, next) {
+      resp.headers.server = 'nodejs/connect/meryl';
+      next();
+    },
+    Connect.logger()
+  )  
+  .p('GET *',
+    Connect.favicon(),
+    Connect.staticProvider()
+  )
+  .h('GET /', function(req, resp) {
+    resp.send(
+      "<h1>Welcome To NodeJS!</h1>\
+      <img src='nodejs.png' />"
+    );
+  })
+  .run();
 
-meryl.plug('GET *', Connect.logger());
-
-meryl.h('GET /', function(req, resp) {
-  resp.send('Connected :)');
-});
-
-require('http').createServer(meryl.cgi()).listen(3000);
 console.log('serving http://localhost:3000');
