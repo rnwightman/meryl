@@ -50,4 +50,5 @@ require('http').createServer(
     
 ).listen(3000);
 
-console.log('serving http://localhost:3000');
+console.log('listening...');
+

@@ -1,12 +1,10 @@
 var meryl = require('../../index'),
-  merylex = require('meryl-extras'),
+  Connect = require('connect').Connect,
   qs = require('querystring');
-  staticfile = merylex('staticfile'),
-  generictemplate = merylex('generictemplate');
 
 var twinkles =  ['This is my freaking first wink', 'Hey tweeting sucks, lets twinkle'];
 
-meryl.p(generictemplate());
+meryl.p(Connect.staticProvider({root: 'public'}));
 
 meryl.p(function(req, resp, next) {
   resp.redirect = function(loc) {
@@ -16,8 +14,6 @@ meryl.p(function(req, resp, next) {
   };
   next();
 });
-
-meryl.p('GET /static/<filepath>', staticfile());
 
 meryl.h('GET /', function(req, resp) {
   resp.render('index', {twinkles: twinkles});
@@ -31,5 +27,5 @@ meryl.h('POST /newwink', function(req, resp) {
   resp.redirect('/');
 });
 
-require('http').createServer(meryl.cgi()).listen(3000);
+console.log('listening...');
 

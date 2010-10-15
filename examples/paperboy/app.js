@@ -20,4 +20,4 @@ meryl
   })
   .run();
 
-console.log('serving http://localhost:3000');
+console.log('listening...');
