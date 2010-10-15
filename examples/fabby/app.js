@@ -1,8 +1,8 @@
 with(require('connect')) {
-  require('../../index')  
+
+  require('../../index')  // meryl
     .fabby
-      (logger())
-      (staticProvider())
+      (logger(), staticProvider())
       ('GET /', function(req, resp) {
           resp.render('home');
         }
