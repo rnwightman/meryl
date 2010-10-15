@@ -55,10 +55,6 @@
             </a>
           </li>
           <li>
-            <a href="#extras">Extras
-            </a>
-          </li>
-          <li>
             <a href="#source">Source
             </a>
           </li>
@@ -90,7 +86,12 @@
               </li>
               <li>Powerful middleware infrastructure based on a plugin system.
               </li>
-              <li>Useful plugins via <a href="#extras">Meryl Extras</a> project
+              <li>Modular template rendering infrastructure. You can choose using
+                your mother's template engine.
+              </li>
+              <li><a href="http://github.com/senchalabs/connect"
+                title="Connect framework">Connect framework</a>
+                compatible
               </li>
             </ul>
           <p>
@@ -135,17 +136,12 @@ $ git clone http://github.com/coffeemate/meryl.git</pre>
             Create a file named 'app.js' with the copy of contents below.
           </p>
           <pre class="js">// app.js
-            
-// import meryl
-var meryl = require('meryl');
-
-// Now define a request handler tied to an url expression.
-meryl.h('GET /{yourname}?', function (req, resp) {
-  resp.send('Hello, ' + req.params.yourname || 'World');
-});
-
-// OK, here we go. Let's plug meryl into your http server instance.
-require('http').createServer(meryl.cgi()).listen(3000);</pre>
+require('meryl')
+  .h('GET /{yourname}?',
+    function (req, resp) {resp.send('Hello, ' + req.params.yourname || 'World')}
+  )
+  .run();
+</pre>
           <p>Ok, let's run it.
           </p>
           <pre class="js">$ node app.js</pre>
@@ -206,6 +202,14 @@ require('http').createServer(meryl.cgi()).listen(3000);</pre>
           </p>
           <pre class="js">meryl.h('GET /', function(req, resp) {
   resp.send('Hello Meryl');
+});</pre>
+              <h5>resp.render(templateName, data)
+              </h5>
+          <p>Renders a template name by manipulating it 
+            with given context data.
+          </p>
+          <pre class="js">meryl.h('GET /', function(req, resp) {
+  resp.render('homepage', {foo: 'bar'});
 });</pre>
           <h5>resp.headers
           </h5>
@@ -366,31 +370,14 @@ require('http').createServer(meryl.cgi()).listen(3000);</pre>
           an object for further using in Meryl context such 'this.options'.
         </p>
         <pre class="js">require('http').createServer(meryl.cgi({debug:true})).listen(3000);</pre>
-      </div>
-      <div class="section">
-        <h3>
-          <a name="extras">Extras
+        <h4>
+          <a name="meryl.run">meryl.run(opts)
           </a>
-        </h3>
-        <hr/>
-        <p>There is an extension project named
-        <a href="http://github.com/coffeemate/meryl-extras"
-          title="meryl-extras">Meryl Extras</a> which provides extra
-           plugins to decorate Meryl as you wish.
+        </h4>
+        <p>Helper function that runs Meryl instantly by wrapping it with an
+        internally created http server.
         </p>
-        <p>To use, go install first via npm
-        </p>
-        <pre class="js">> npm install meryl-extras</pre>
-        <p>Below, there is an example demonstrates how to build an ad-hoc file
-            server using static file plugin</p>
-        <pre class="js">var meryl = require('meryl'),
-  merylex = require('meryl-extras');
-
-var staticfile = merylex('staticfile');
-
-require('http').createServer(
-  meryl.p('GET /< filepath>', staticfile()).cgi()
-).listen(3000);</pre>
+        <pre class="js">meryl.run({debug:true, port: 8080}))</pre>
       </div>
       <div class="section">
         <h3>
