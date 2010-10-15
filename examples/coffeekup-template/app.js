@@ -4,9 +4,7 @@ var meryl = require('../../index'),
 var opts = {
   templateDir: 'templates',
   templateExt: '.kup',
-  templateFunc: function (src, data) {
-    return coffeekup.render(src, {context: data});
-  },
+  templateFunc: coffeekup.adapters.meryl,
   debug: true
 };
 
