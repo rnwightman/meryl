@@ -7,5 +7,5 @@ meryl
   )
   .run();
 
-console.log('listening');
+console.log('listening...');
 
