@@ -138,7 +138,9 @@ $ git clone http://github.com/coffeemate/meryl.git</pre>
           <pre class="js">// app.js
 require('meryl')
   .h('GET /{yourname}?',
-    function (req, resp) {resp.send('Hello, ' + req.params.yourname || 'World')}
+    function (req, resp) {
+      resp.send('Hello, ' + req.params.yourname || 'World');
+    }
   )
   .run();
 </pre>
