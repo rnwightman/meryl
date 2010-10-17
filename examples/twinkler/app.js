@@ -6,15 +6,6 @@ var twinkles =  ['This is my freaking first wink', 'Hey tweeting sucks, lets twi
 
 meryl.p(Connect.staticProvider({root: 'public'}));
 
-meryl.p(function(req, resp, next) {
-  resp.redirect = function(loc) {
-    resp.status = 301;
-    resp.headers['Location'] = loc;
-    resp.send();
-  };
-  next();
-});
-
 meryl.h('GET /', function(req, resp) {
   resp.render('index', {twinkles: twinkles});
 });

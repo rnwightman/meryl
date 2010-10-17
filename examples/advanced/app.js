@@ -5,9 +5,7 @@ var meryl = require('./../../index');
  * Please note that chaining of Meryl functions
  * and their verbose names instead of single letter ones.
  */
-
-meryl.debug = 1;
-
+ 
 require('http').createServer(
   meryl
   
@@ -46,7 +44,7 @@ require('http').createServer(
       resp.send(1);
     })
     
-    .cgi()
+    .cgi({debug: true})
     
 ).listen(3000);
 
