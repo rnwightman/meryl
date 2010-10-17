@@ -1,4 +1,0 @@
-ul ->
-  for name in @people
-    li @render 'partial', name: name
-
