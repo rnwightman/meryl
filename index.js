@@ -8,4 +8,3 @@
  * Point meryl
  */
 module.exports = require('./lib/meryl');
-

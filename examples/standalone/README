@@ -1,8 +1,11 @@
-Simply type 'meryl' in the current working directory
+Simply type 'meryl' in the current working directory.
+You can also pass an argument denoting root directory.
 
-  $ meryl
-  
-or execute file 'run'
+  $ meryl <rootpath>
 
-  $ ./run
+You can create a module named 'boot.js' in the root directory
+which exports a function that accepts Meryl instance.
 
+  module.exports = function (meryl) {
+    // config meryl
+  }
