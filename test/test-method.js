@@ -1,9 +1,9 @@
 var meryl = require('./../index').factory,
-  http = require('./fixtures/httputil');
+  httputil = require('nodeunit').utils.httputil;
 
 ['GET', 'POST', 'PUT', 'DELETE'].forEach(function (val) {
   exports['test' + val + 'method'] = function (test) {
-    http(
+    httputil(
       meryl()
         .h(val + ' /', function(req, resp) {
           resp.send(req.method);

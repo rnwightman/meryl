@@ -1,11 +1,12 @@
 var meryl = require('./../index').factory,
-  http = require('./fixtures/httputil'),
+  httputil = require('nodeunit').utils.httputil,
   async = require('async');
 
 exports.testSinglePathVar = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /{param1}', function(req, resp) {
+        resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
@@ -44,9 +45,10 @@ exports.testSinglePathVar = function (test) {
 };
 
 exports.testSingleGreedyPathVar = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /<param1>', function(req, resp) {
+        resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
@@ -78,9 +80,10 @@ exports.testSingleGreedyPathVar = function (test) {
 };
 
 exports.testMultiplePathVars = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /{param1}/{param2}/{param3}', function(req, resp) {
+        resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
@@ -121,9 +124,10 @@ exports.testMultiplePathVars = function (test) {
 };
 
 exports.testMultipleGreedyPathVars = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /<param1>/<param2>', function(req, resp) {
+        resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
@@ -156,9 +160,10 @@ exports.testMultipleGreedyPathVars = function (test) {
 };
 
 exports.testMixedTypesOfPathVars = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /{param1}/<param2>/{param3}', function(req, resp) {
+        resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),

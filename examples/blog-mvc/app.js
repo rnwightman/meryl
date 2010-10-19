@@ -6,8 +6,8 @@ var
   datastore = require('./datastore');
   meryl = require('../../index');
 
-var controllersDir = 'controllers';
-var viewsDir = 'views';
+var controllerDir = 'controllers';
+var viewDir = 'views';
 var staticDir = 'public';
 
 datastore.load(function() {
@@ -22,6 +22,7 @@ datastore.load(function() {
       var filesRead = 0;
       filenames.forEach(function (filename) {
         fs.readFile(path.join(controllerDir, filename), function (err, data) {
+          if (err) throw err;
           eval(data.toString());
           console.log("'" + filename + "' controller loaded.");
           if (filenames.length === ++filesRead) {
@@ -33,9 +34,9 @@ datastore.load(function() {
   }
 
   // Run Meryl once controllers loaded
-  loadControllers(controllersDir, function() {
-    meryl.run({templateDir: viewsDir});
+  loadControllers(controllerDir, function() {
+    meryl.run({templateDir: viewDir});
     console.log('listening...');
   });
-
 });
+

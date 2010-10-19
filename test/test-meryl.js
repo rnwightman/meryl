@@ -1,9 +1,9 @@
 var meryl = require('./../index').factory,
-  http = require('./fixtures/httputil'),
+  httputil = require('nodeunit').utils.httputil,
   async = require('async');
 
 exports.testDefaultNotFoundHandler = function (test) {
-  http(
+  httputil(
     meryl().cgi(),
     function (server, client) {
       client.fetch('GET', '/', {}, function (resp) {
@@ -17,7 +17,7 @@ exports.testDefaultNotFoundHandler = function (test) {
 };
 
 exports.testCustomtNotFoundHandler = function (test) {
-  http(
+  httputil(
     meryl()
       .handleNotFound(function(req, resp) {
           resp.status = 405;
@@ -38,7 +38,7 @@ exports.testCustomtNotFoundHandler = function (test) {
 };
 
 exports.testDefaultErrorHandler = function (test) {
-  http(
+  httputil(
     meryl()
       .h('GET /', function(req, resp) { throw 'test error'; })
       .cgi(),
@@ -54,7 +54,7 @@ exports.testDefaultErrorHandler = function (test) {
 };
 
 exports.testCustomErrorHandler = function (test) {
-  http(
+  httputil(
     meryl()
       .handleError(function(req, resp, err) {
           resp.status = 501;
@@ -76,7 +76,7 @@ exports.testCustomErrorHandler = function (test) {
 };
 
 exports.testPluginChaining = function (test) {
-  http(
+  httputil(
     meryl()
       .p(function(req, resp, next) {
         resp.headers.plugin1 = true;
