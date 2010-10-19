@@ -4,9 +4,30 @@ Meryl
 Meryl is minimalist web framework for nodejs platform.
 It is really simple to use, fun to play and easy to modify.
 
-	require('meryl')
-		.h('GET /', function (req, resp) { resp.send('<h3>Hello, World!</h3>'); });
-		.run();
+Here is simple preview.
+
+	var meryl = require('meryl');
+	
+	meryl
+	  .plug('GET *', function (req, resp, next) {
+	      resp.headers.server = 'Meryl on NodeJS';
+	      next();
+	    }
+	  )
+	  .plug('GET /private/*', function (req, resp, next) {
+	      resp.status = 401;
+	      throw 'Forbidden';
+	    }
+	  )
+	  .handle('GET /', function (req, resp) {
+	      resp.send('<h3>Hello, World!</h3>');
+	    }
+	  )
+	  .handle('GET /greet/{name}', function (req, resp) {
+	      resp.send('<h3>Hello, ' + req.params.name + '</h3>');
+	    }
+	  )
+	  .run();
 
 Meryl has much more...
 
