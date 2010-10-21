@@ -2,7 +2,6 @@ var
   fs = require('fs'),
   path = require('path'),
   connect = require('connect'),
-  Script = process.binding('evals').Script,
   datastore = require('./datastore');
   meryl = require('../../index');
 
