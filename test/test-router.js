@@ -5,14 +5,14 @@ var meryl = require('./../index').factory,
 exports.testSinglePathVar = function (test) {
   httputil(
     meryl()
-      .h('GET /{param1}', function(req, resp) {
+      .h('GET /{param1}', function (req, resp) {
         resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.equal('test1', resp.bodyAsObject.param1);
@@ -20,14 +20,14 @@ exports.testSinglePathVar = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
@@ -47,14 +47,14 @@ exports.testSinglePathVar = function (test) {
 exports.testSingleGreedyPathVar = function (test) {
   httputil(
     meryl()
-      .h('GET /<param1>', function(req, resp) {
+      .h('GET /<param1>', function (req, resp) {
         resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.equal('test1/test2/test3', resp.bodyAsObject.param1);
@@ -62,7 +62,7 @@ exports.testSingleGreedyPathVar = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
@@ -82,14 +82,14 @@ exports.testSingleGreedyPathVar = function (test) {
 exports.testMultiplePathVars = function (test) {
   httputil(
     meryl()
-      .h('GET /{param1}/{param2}/{param3}', function(req, resp) {
+      .h('GET /{param1}/{param2}/{param3}', function (req, resp) {
         resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.equal('test1', resp.bodyAsObject.param1);
@@ -99,14 +99,14 @@ exports.testMultiplePathVars = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3/test4', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
@@ -126,14 +126,14 @@ exports.testMultiplePathVars = function (test) {
 exports.testMultipleGreedyPathVars = function (test) {
   httputil(
     meryl()
-      .h('GET /<param1>/<param2>', function(req, resp) {
+      .h('GET /<param1>/<param2>', function (req, resp) {
         resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.equal('test1/test2', resp.bodyAsObject.param1);
@@ -142,7 +142,7 @@ exports.testMultipleGreedyPathVars = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
@@ -162,14 +162,14 @@ exports.testMultipleGreedyPathVars = function (test) {
 exports.testMixedTypesOfPathVars = function (test) {
   httputil(
     meryl()
-      .h('GET /{param1}/<param2>/{param3}', function(req, resp) {
+      .h('GET /{param1}/<param2>/{param3}', function (req, resp) {
         resp.headers['content-type'] = 'application/json';
         resp.send(JSON.stringify(req.params));
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3/test4/test5', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.equal('test1', resp.bodyAsObject.param1);
@@ -179,14 +179,14 @@ exports.testMixedTypesOfPathVars = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/test1/test2/test3/test4/test5/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               ok();

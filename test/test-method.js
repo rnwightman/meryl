@@ -5,7 +5,7 @@ var meryl = require('./../index').factory,
   exports['test' + val + 'method'] = function (test) {
     httputil(
       meryl()
-        .h(val + ' /', function(req, resp) {
+        .h(val + ' /', function (req, resp) {
           resp.send(req.method);
         })
         .cgi(),

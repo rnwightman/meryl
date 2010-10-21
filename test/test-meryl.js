@@ -19,7 +19,7 @@ exports.testDefaultNotFoundHandler = function (test) {
 exports.testCustomtNotFoundHandler = function (test) {
   httputil(
     meryl()
-      .handleNotFound(function(req, resp) {
+      .handleNotFound(function (req, resp) {
           resp.status = 405;
           resp.send('test data');
         }
@@ -40,7 +40,9 @@ exports.testCustomtNotFoundHandler = function (test) {
 exports.testDefaultErrorHandler = function (test) {
   httputil(
     meryl()
-      .h('GET /', function(req, resp) { throw 'test error'; })
+      .h('GET /', function (req, resp) {
+        throw 'test error';
+      })
       .cgi(),
     function (server, client) {
       client.fetch('GET', '/', {}, function (resp) {
@@ -56,12 +58,14 @@ exports.testDefaultErrorHandler = function (test) {
 exports.testCustomErrorHandler = function (test) {
   httputil(
     meryl()
-      .handleError(function(req, resp, err) {
+      .handleError(function (req, resp, err) {
           resp.status = 501;
           resp.send(err);
         }
       )
-      .h('GET /', function(req, resp) { throw 'test data'; })
+      .h('GET /', function (req, resp) {
+        throw 'test data';
+      })
       .cgi(),
     function (server, client) {
       client.fetch('GET', '/', {}, function (resp) {
@@ -78,37 +82,37 @@ exports.testCustomErrorHandler = function (test) {
 exports.testPluginChaining = function (test) {
   httputil(
     meryl()
-      .p(function(req, resp, next) {
+      .p(function (req, resp, next) {
         resp.headers.plugin1 = true;
         next();
       })
-      .p('*', function(req, resp, next) {
+      .p('*', function (req, resp, next) {
         resp.headers.plugin2 = true;
         next();
       })
-      .p('GET *', function(req, resp, next) {
+      .p('GET *', function (req, resp, next) {
         resp.headers.plugin3 = true;
         next();
       })
-      .p('GET /', function(req, resp, next) {
+      .p('GET /', function (req, resp, next) {
         resp.headers.plugin4 = true;
         next();
       })
-      .p('GET /private', function(req, resp, next) {
+      .p('GET /private', function (req, resp, next) {
         resp.status = 403;
-        throw new Error;
+        throw new Error();
       })
-      .p('POST /', function(req, resp, next) {
+      .p('POST /', function (req, resp, next) {
         resp.headers.plugin5 = true;
         next();
       })
-      .h('GET /', function(req, resp) {
+      .h('GET /', function (req, resp) {
         resp.send('test data');
       })
       .cgi(),
     function (server, client) {
       async.series([
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/', {}, function (resp) {
               test.equal(200, resp.statusCode);
               test.ok(resp.headers.plugin1);
@@ -121,7 +125,7 @@ exports.testPluginChaining = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('POST', '/', {}, function (resp) {
               test.equal(404, resp.statusCode);
               test.ok(resp.headers.plugin1);
@@ -133,7 +137,7 @@ exports.testPluginChaining = function (test) {
             }
           );
         },
-        function(ok) {
+        function (ok) {
           client.fetch('GET', '/private', {}, function (resp) {
               test.equal(403, resp.statusCode);
               test.ok(resp.headers.plugin1);
