@@ -6,19 +6,19 @@ var twinkles =  ['This is my freaking first wink', 'Hey tweeting sucks, lets twi
 
 meryl.p(Connect.staticProvider({root: 'public'}));
 
-meryl.h('GET /', function(req, resp) {
+meryl.h('GET /', function (req, resp) {
   resp.render('index', {twinkles: twinkles});
 });
 
-meryl.h('POST /newwink', function(req, resp) {
+meryl.h('POST /newwink', function (req, resp) {
   var postdataAsObject = qs.parse(req.postdata.toString());
-  if(postdataAsObject && postdataAsObject.wink) {
+  if (postdataAsObject && postdataAsObject.wink) {
     twinkles.push(postdataAsObject.wink);
   }
   resp.redirect('/');
 });
 
-meryl.run({templateDir:'views'});
+meryl.run({templateDir: 'views'});
 
 console.log('listening...');
 

@@ -3,7 +3,7 @@ var Connect = require('connect'),
 
 meryl
   .p(
-    function(req, resp, next) {
+    function (req, resp, next) {
       resp.headers.server = 'nodejs/connect/meryl';
       next();
     },
@@ -13,11 +13,8 @@ meryl
     Connect.favicon(),
     Connect.staticProvider()
   )
-  .h('GET /', function(req, resp) {
-    resp.send(
-      "<h1>Welcome To NodeJS!</h1>\
-      <img src='nodejs.png' />"
-    );
+  .h('GET /', function (req, resp) {
+    resp.send("<h1>Welcome To NodeJS!</h1><img src='nodejs.png' />");
   })
   .run();
 

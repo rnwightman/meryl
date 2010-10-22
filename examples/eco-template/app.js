@@ -8,7 +8,7 @@ var opts = {
 };
 
 meryl
-  .h('GET /', function(req, resp) {
+  .h('GET /', function (req, resp) {
       resp.render('layout',
         {content: 'home', context: {people: ['bob', 'alice', 'jane', 'meryl']}});
     }

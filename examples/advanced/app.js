@@ -9,15 +9,15 @@ var meryl = require('./../../index');
 require('http').createServer(
   meryl
   
-    .plug(function(req, resp, next) {
+    .plug(function (req, resp, next) {
       resp.filteredSend = function (buffer) {
-        resp.send("<h1>" + buffer.toString() + "</h1>")
+        resp.send("<h1>" + buffer.toString() + "</h1>");
       };
       next();
     })
     
     .plug(function (req, resp, next) {
-      resp.headers['Server'] = 'node';
+      resp.headers.server = 'node';
       console.log(req.method + ' ' + req.params.pathname);
       next();
     })
