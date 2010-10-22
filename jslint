@@ -1,1 +1,0 @@
-nodelint --config nodelint.cfg index.js lib/*.js test/*js $@
