@@ -3,9 +3,7 @@
  */
 
 module.exports = function (meryl) {
-  meryl.options = {
-    templateExt: '.coffee',
-    templateFunc: require('coffeekup').adapters.meryl
-  };
+  meryl.options.templateExt = '.coffee';
+  meryl.options.templateFunc = require('coffeekup').adapters.meryl;
 };
 
