@@ -1,0 +1,123 @@
+body {
+  background-image: url(../images/bg-body.png);
+  padding: 0px;
+  margin: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
+}
+
+#wrap {
+  background-image: url(../images/bg-page.png);
+  background-repeat: no-repeat;
+  width: 1050px;
+  min-height: 503px;
+}
+
+h1 {
+  background-image: url(../images/logo-meryl-js.png);
+  background-repeat: no-repeat;
+  float: left;
+  width: 350px;
+  height: 244px;
+  margin: 0px 0px 0px 72px;
+  padding: 0px;
+}
+
+h1 span {
+  display: none;
+}
+
+h2 {
+  background-image: url(../images/meryl-baseline.png);
+  background-repeat: no-repeat;
+  float: right;
+  width: 484px;
+  height: 112px;
+  margin: 70px 70px 0px 0px;
+  padding: 0px;
+}
+
+h2 span {
+  display: none;
+}
+
+h3 {
+  margin: 0px 0px 30px 0px;
+  padding: 0px;
+  background-image: url(../images/bg-article.png);
+  background-repeat: no-repeat;
+  background-position: -10px -50px;
+  color: #444;
+  font-size: 1.3em;
+}
+nav {  
+  clear: both;
+  margin-left: 150px;  
+  padding-top: 30px;
+  float: left;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 5px;
+}
+
+nav a {
+  font-size: 1.2em;
+  text-shadow: #aaa 0.2em 0.2em 0.2em;
+}
+
+article {
+  margin: 0px 0px 50px 400px;
+  padding: 50px 0px 0px 0px;
+  clear: right;
+}
+
+footer {
+  clear: both;
+  margin-left: 400px;
+}
+
+pre {
+  color:#EEE;
+  font-size: 1.2em;
+  background:rgba(0, 0, 0, 0.75);
+  padding:15px;
+  border-radius: 5px;
+  border-radius: 5px;
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin-top: 10px;
+	box-shadow: 5px 5px 3px #999;
+	-moz-box-shadow: 5px 5px 3px #999;
+	-webkit-box-shadow: 5px 5px 3px #999;
+}
+
+.js .keyword { font-weight:bold;color:#C2A770; }
+.js .string,code .regexp { color:#b5c587; }
+.js .class,code .special { color:#669199; }
+.js .number { color:#a33d29; }
+.js .comment { color:#999999; }
+
+#follow-me {
+  float: right;
+}
+
+#fork-me {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+a:link, a:visited, a:active {
+  font-weight: bold;
+  text-decoration: none;
+  color: #336699;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+}
