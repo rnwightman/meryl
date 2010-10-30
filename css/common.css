@@ -7,7 +7,7 @@ body {
 }
 
 #wrap {
-  background-image: url(../images/bg-page.png);
+  background-image: url(../images/bg-page.jpg);
   background-repeat: no-repeat;
   width: 1050px;
   min-height: 503px;
@@ -50,30 +50,30 @@ h3 {
   color: #444;
   font-size: 1.3em;
 }
-nav {  
+#nav {  
   clear: both;
   margin-left: 150px;  
   padding-top: 30px;
   float: left;
 }
 
-nav ul li {
+#nav ul li {
   list-style: none;
   margin: 5px;
 }
 
-nav a {
+#nav a {
   font-size: 1.2em;
   text-shadow: #aaa 0.2em 0.2em 0.2em;
 }
 
-article {
+.article {
   margin: 0px 0px 50px 400px;
   padding: 50px 0px 0px 0px;
   clear: right;
 }
 
-footer {
+#footer {
   clear: both;
   margin-left: 400px;
 }
@@ -119,5 +119,5 @@ a:hover {
   text-decoration: underline;
 }
 
-footer {
+#footer {
 }
