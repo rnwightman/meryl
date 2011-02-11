@@ -33,7 +33,7 @@ require('http').createServer(
     })
     
     .handle('GET /', function (req, resp) {
-      resp.send("<h1>Demonstraing Meryl</h1>");
+      resp.send("<h1>Demonstrating Meryl</h1>");
     })
     
     .handle('GET /{pagename}.html', function (req, resp) {
